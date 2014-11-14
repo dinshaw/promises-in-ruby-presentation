@@ -1,0 +1,6 @@
+.reveal pre code {
+  font-size: 150%;
+  line-height: 150%;
+  border: 1px solid white;
+  padding: 15px;
+}

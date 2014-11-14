@@ -1,0 +1,138 @@
+<section>
+
+<h2>i <img class="emoji" title=":heart:" alt=":heart:" src="https://assets-cdn.github.com/images/icons/emoji/heart.png" align="absmiddle"> Promises in Ruby</h2>
+
+<p>Promises we can keep.</p>
+
+<p>"I promise that there will be no cat pics."</p>
+
+<p>Dinshaw Gobhai | <a href="mailto:dgobhai@constantcontact.com">dgobhai@constantcontact.com</a></p>
+
+<p><a href="https://github.com/tallfriend" class="user-mention">@tallfriend</a></p>
+
+<p><a href="github.com/dinshaw/promises-in-ruby">github.com/dinshaw/promises-in-ruby</a></p>
+
+<p><a href="github.com/dinshaw/promises">github.com/dinshaw/promises</a></p>
+
+</section>
+<section>
+<section>
+
+<h2>Promises, eh?</h2>
+
+<p>"direct correspondence between synchronous and asynchronous functions"</p>
+
+<p><a href="https://www.youtube.com/watch?v=V2Q13hzTGmA">Callbacks, Promises, and Coroutines</a> - Domenic Denicola</p>
+
+<p><a href="https://blog.domenic.me/youre-missing-the-point-of-promises/">You’re missing the point of Promises</a> - Domenic Denicola</p>
+
+<p><a href="https://promisesaplus.com/">Promises/A+</a> - Lots of very smart people</p>
+
+</section>
+</section>
+<section>
+
+<h3>Getting cat pics with JS</h3>
+<pre><code class="js">getCat("Garfield", function(err, cat) {
+  if (err) {
+    getCatError(err)
+  } else {
+    getCatPics(cat, function(err, pics) {
+      if (err) {
+        getCatPicsError(err)
+      } else {
+        showCatPic(pics)
+...
+</code></pre>
+</section>
+<section>
+
+<h3>Getting cat pics with a Promise</h3>
+<pre><code class="js">getCat("Garfield")
+  .then(getCatPics, getCatError)
+  .then(showCatPic, getCatPicsError)
+</code></pre>
+</section>
+<section>
+<section>
+
+<h2>In regular ruby</h2>
+<pre><code class="ruby">  ...
+    cat = get_cat 'Garfield'
+    pics = get_cat_pics cat
+    show_cat_pic pics.first
+  rescue GetCat::Error =&gt; e
+    handle_get_cat_error
+  rescue GetCatPics::Error =&gt; e
+    handle_get_cat_pics_error
+  ...
+</code></pre>
+</section>
+<section>
+
+<h2>Ruby Promise</h2>
+<pre><code class="ruby">  get_cat('Garfield').
+    then(get_cat_pics, handle_get_cat_error).
+    then(show_cat_pic, handle_get_cat_pics_error)
+
+</code></pre>
+</section>
+<section>
+
+<h2>Ruby Promise</h2>
+<pre><code class="ruby">  Promise.start(Cat.get('Garfield')).
+    then(get_cat_pics, handle_get_cat_error).
+    then(show_cat_pic, handle_get_cat_pics_error)
+
+</code></pre>
+</section>
+</section>
+<section>
+
+<h2>Code</h2>
+
+</section>
+<section>
+<section>
+
+<h2>Fulfill and Reject</h2>
+<pre><code class="ruby">    Promise.new { |fulfill, reject|
+      if something
+        fulfill.call something.value
+      else
+        reject.call something.error
+      end
+    }
+</code></pre>
+</section>
+</section>
+<section>
+
+<h2>Promises Recap</h2>
+
+<p class="fragment">* Return a promise, immediately</p>
+
+<p class="fragment">* Fulfills or Rejects</p>
+
+<p class="fragment">* Chainable / "thenable"</p>
+
+</section>
+<section>
+<section>
+
+<h2>Thanks!</h2>
+
+<p>Brian Mitchel and Mike Davis for explaining this stuff to me.
+Jed Northbridge for his Reavel-CK gem that I used to make this presentation</p>
+
+</section>
+</section>
+<section>
+
+<h2>Thoughts</h2>
+
+<ul>
+<li>EM</li>
+</ul>
+
+</section>
