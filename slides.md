@@ -116,7 +116,9 @@ getCat("Garfield")
 
 ## Thanks!
 Brian Mitchel and Mike Davis for explaining this stuff to me.
-Jed Northbridge for his Reavel-CK gem that I used to make this presentation
+Jed Northbridge for his [Reavel-CK](https://github.com/jedcn/reveal-ck) gem that I used to make this presentation.
+
+[What are blocks, procs, and lambdas?](http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/)
 
 ***
 
