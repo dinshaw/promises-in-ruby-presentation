@@ -6,3 +6,14 @@ Imagine if you didn't want to block; imagine if some steps could run concurrentl
 
 The promises constructor exposes the fulfill and reject methonds (of the promise instance)
 to the passed block.
+
+Imagine part -cleanup
+
+Add github to bg
+
+Show source code, if possible (maybe gist?)
+
+Close with mike's quote
+
+Tough to test-drive
+hard to understand, even after writing it!

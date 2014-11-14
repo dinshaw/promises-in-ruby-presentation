@@ -68,6 +68,8 @@
 
 <p><a href="https://promisesaplus.com/">Promises/A+</a> - Lots of very smart people</p>
 
+<p><a href="https://github.com/lgierth/promise.rb">github.com/lgierth/promise.rb</a></p>
+
 </section>
 </section>
 <section>
@@ -116,6 +118,8 @@
     then(show_cat_pic, handle_get_cat_pics_error)
 
 </code></pre>
+<p><a href="http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/">Block, Proc, and Lambda</a></p>
+
 </section>
 <section>
 
@@ -137,15 +141,58 @@
 
 <h2>Fulfill and Reject</h2>
 <pre><code class="ruby">    Promise.new { |fulfill, reject|
-      if something
-        fulfill.call something.value
+      if my_method?
+        fulfill.call my_instance.value
       else
-        reject.call something.error
+        reject.call my_instance.error
       end
     }
 </code></pre>
 </section>
 </section>
+<section>
+
+<h2>Initialize</h2>
+<pre><code class="ruby">  def initialize
+    @state = :pending
+    @value = nil
+    begin
+      yield method(:fulfill), method(:reject)
+    rescue Exception =&gt; e
+      reject(e)
+    end
+  end
+</code></pre>
+</section>
+<section>
+<section>
+
+<h2>All</h2>
+<pre><code class="ruby">  def self.all(*promises)
+    Promise.new do |fulfill, reject|
+      results = []
+      on_success = -&gt;(result) do
+        results </code></pre>
+</section>
+</section>
+<section>
+
+<h2>Any</h2>
+<pre><code class="ruby">  def self.any(*promises)
+    Promise.new do |fulfill, reject|
+      count = promises.size
+      on_error = -&gt;(*) do
+        count -= 1
+        reject.call if count == 0
+      end
+      promises.each do |promise|
+        promise.then(fulfill, on_error)
+      end
+    end
+  end
+</code></pre>
+</section>
+<section>
 <section>
 
 <h2>Promises Recap</h2>
@@ -157,13 +204,24 @@
 <p class="fragment">* Chainable / "thenable"</p>
 
 </section>
+</section>
+<section>
+
+<h2>Source code</h2>
+
+<p><a href="github.com/dinshaw/promises">github.com/dinshaw/promises</a></p>
+
+</section>
 <section>
 <section>
 
 <h2>Thanks!</h2>
 
-<p>Brian Mitchel and Mike Davis for explaining this stuff to me.
-Jed Northbridge for his Reavel-CK gem that I used to make this presentation</p>
+<p>Brian Mitchel explaining this stuff to me.</p>
+
+<p>Mike Davis for helping me write the talk.</p>
+
+<p>Jed Northbridge for his <a href="https://github.com/jedcn/reveal-ck">Reavel-CK</a> gem that I used to make this presentation.</p>
 
 </section>
 </section>

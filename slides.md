@@ -22,6 +22,8 @@ Dinshaw Gobhai | [dgobhai@constantcontact.com](mailto:dgobhai@constantcontact.co
 
 [Promises/A+](https://promisesaplus.com/) - Lots of very smart people
 
+[github.com/lgierth/promise.rb](https://github.com/lgierth/promise.rb)
+
 ***
 
 ### Getting cat pics with JS
@@ -76,6 +78,8 @@ getCat("Garfield")
 
 ```
 
+[Block, Proc, and Lambda](http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/)
+
 ---
 
 ## Ruby Promise
@@ -97,12 +101,66 @@ getCat("Garfield")
 
 ```ruby
     Promise.new { |fulfill, reject|
-      if something
-        fulfill.call something.value
+      if my_method?
+        fulfill.call my_instance.value
       else
-        reject.call something.error
+        reject.call my_instance.error
       end
     }
+```
+
+***
+
+## Initialize
+
+```ruby
+  def initialize
+    @state = :pending
+    @value = nil
+    begin
+      yield method(:fulfill), method(:reject)
+    rescue Exception => e
+      reject(e)
+    end
+  end
+```
+
+***
+
+## All
+
+```ruby
+  def self.all(*promises)
+    Promise.new do |fulfill, reject|
+      results = []
+      on_success = ->(result) do
+        results << result
+        fulfill.call(results) if results.size == promises.size
+      end
+      promises.each do |promise|
+        promise.then(on_success, reject)
+      end
+    end
+  end
+```
+
+***
+
+## Any
+
+```ruby
+  def self.any(*promises)
+    Promise.new do |fulfill, reject|
+      count = promises.size
+      on_error = ->(*) do
+        count -= 1
+        reject.call if count == 0
+      end
+      promises.each do |promise|
+        promise.then(fulfill, on_error)
+      end
+    end
+  end
 ```
 
 ***
@@ -114,11 +172,18 @@ getCat("Garfield")
 
 ***
 
-## Thanks!
-Brian Mitchel and Mike Davis for explaining this stuff to me.
-Jed Northbridge for his [Reavel-CK](https://github.com/jedcn/reveal-ck) gem that I used to make this presentation.
+## Source code
 
-[What are blocks, procs, and lambdas?](http://awaxman11.github.io/blog/2013/08/05/what-is-the-difference-between-a-block/)
+[github.com/dinshaw/promises](github.com/dinshaw/promises)
+
+***
+
+## Thanks!
+Brian Mitchel explaining this stuff to me.
+
+Mike Davis for helping me write the talk.
+
+Jed Northbridge for his [Reavel-CK](https://github.com/jedcn/reveal-ck) gem that I used to make this presentation.
 
 ***
 
