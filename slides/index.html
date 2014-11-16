@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="css/reveal-ck.css">
 
 <link rel="stylesheet" href="css/promise.css">
+<link rel="stylesheet" href="css/title-footer.css">
 
 <!-- If the query includes 'print-pdf', use the PDF print sheet -->
 <script>
@@ -259,7 +260,7 @@
       { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
     ]
   };
-  var configOptions = {"controls":true,"progress":true,"history":true,"center":true}
+  var configOptions = {"dependencies":[{"src":"plugin/title-footer/title-footer.js","async":true,"callback":"function() { title_footer.initialize('github.com/dinshaw/promise','rgba(255,255,255,0.1)'); }"}]}
   var initializeOptions = {};
   extend(initializeOptions, baseOptions);
   extend(initializeOptions, configOptions);

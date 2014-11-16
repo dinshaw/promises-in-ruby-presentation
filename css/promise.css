@@ -4,3 +4,7 @@
   border: 1px solid white;
   padding: 15px;
 }
+
+.reveal #title-footer {
+  font-size: 150%;
+}

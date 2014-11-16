@@ -4,16 +4,12 @@ Wouldn't it be nice to see these sequential flows the way we think about them
 The ruby doesn't look so bad at three steps, but imagine 15 steps...!
 Imagine if you didn't want to block; imagine if some steps could run concurrently
 
-The promises constructor exposes the fulfill and reject methonds (of the promise instance)
+The promises constructor exposes the fulfill and reject methods (of the promise instance)
 to the passed block.
-
-Imagine part -cleanup
 
 Add github to bg
 
-Show source code, if possible (maybe gist?)
-
-Close with mike's quote
-
-Tough to test-drive
-hard to understand, even after writing it!
+Closing:
+* with mike's quote
+* Tough to test-drive
+* hard to understand, even after writing it!

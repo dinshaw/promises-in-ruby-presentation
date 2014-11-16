@@ -1,2 +1,7 @@
 theme: night
-
+revealjs_config:
+  dependencies:
+    -
+      src: 'plugin/title-footer/title-footer.js'
+      async: true
+      callback: function() { title_footer.initialize('github.com/dinshaw/promise','rgba(255,255,255,0.1)'); }
