@@ -1,5 +1,9 @@
 theme: night
+author: "Dinshaw Gobhai"
+title: "Promises in Ruby"
+base_url: 'https://twitter.com/'
 revealjs_config:
+  loop: false
   dependencies:
     -
       src: 'plugin/title-footer/title-footer.js'

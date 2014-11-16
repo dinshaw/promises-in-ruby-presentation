@@ -3,8 +3,10 @@
   line-height: 150%;
   border: 1px solid white;
   padding: 15px;
+  max-height: 500px;
 }
-
-.reveal #title-footer {
-  font-size: 150%;
+/*.reveal #title-footer {
+  line-height: 2;
+  font-size: 50%;
 }
+*/
